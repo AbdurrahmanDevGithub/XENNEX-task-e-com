@@ -1,13 +1,18 @@
 import express from "express"
-const routes = express.Router()
+const router = express.Router()
+
+import accounrRoutes from "./Account.routes"
+
+const routes=[
+  {
+    path:"/account",
+    route:accounrRoutes
+  }
+]
+
+routes.forEach((route)=>{
+  router.use(route.path,route.route)
+})
 
 
-// const route=[
-//   {
-//     path:"/account",
-//     route:""
-//   }
-// ]
-
-
-export default routes
+export default router

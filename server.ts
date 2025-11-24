@@ -3,12 +3,18 @@ import connectDb from "./database/DbConnection"
 import dotenv from "dotenv"
 dotenv.config()
 
+import router from "./routes/index.route"
 
 const app=express()
 
+app.use(express.json())
 
-//Database connection
+
+
 connectDb()
+
+
+app.use("/api",router)
 
 
 

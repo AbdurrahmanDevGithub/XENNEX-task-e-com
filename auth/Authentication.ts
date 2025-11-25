@@ -1,8 +1,9 @@
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
+import { IUser } from "../models/User.model"
 dotenv.config()
 
-const generateToken=async(user)=>{
+export const generateToken=(user:IUser)=>{
   try{
     const email=user.email
     const password=user.password
@@ -10,8 +11,9 @@ const generateToken=async(user)=>{
     const payload={email,password}
 
     const token=jwt.sign(payload,process.env.JWT_SECRET!)
-  }catch{
+    return token
+  }catch(error){
     console.log("error in genarateToken", error );
-    return {error: "error in genarateToken"}
+    throw new Error ("error in genarateToken")
   }
 }

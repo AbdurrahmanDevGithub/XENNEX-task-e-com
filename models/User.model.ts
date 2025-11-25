@@ -4,7 +4,8 @@ import bcrypt from "bcrypt"
 export interface IUser extends Document{
   username:string,
   email:string,
-  password:string
+  password:string,
+  comparePassword(candidatePassword:string):Promise<boolean>
 }
 
 export interface IUserModel extends Model<IUser> {
@@ -41,6 +42,14 @@ userSchema.pre("save",async function(){
     user.password=hash
   }
 })
+
+userSchema.methods.comparePassword=async function(candidatePassword:any){
+  const user=this;
+  const match=await bcrypt.compare(candidatePassword,user.password)
+  return match
+}
+
+
 
 
 const UserModel=mongoose.model<IUser,IUserModel>("user",userSchema)

@@ -1,6 +1,6 @@
 import {Request, Response} from "express"
 
-import { accountSignup } from "../services/Account.services";
+import { accountSignup,accountLogin } from "../services/Account.services";
 
 
 export class accountController{
@@ -14,8 +14,25 @@ export class accountController{
 
         return res.status(user.statuscode) .json(user)
     } catch (error) {
-        console.log("Error in register controller:", error);
-        return res.status(500).json("Error in register controller:");
+        console.log("Error in signup controller:", error);
+        return res.status(500).json("Error in signup controller:");
     }
   }
+
+  static async login(req: Request,res: Response){
+    try{
+      const {email,password} = req.body;
+      const user=await accountLogin({email,password})
+      if("error" in user){
+        return res.status(user.statuscode) .json({error:user.error})
+      }
+
+      return res.status(user.statuscode) .json({message:user.message,user:user.user,token:user.token})
+
+    }catch(error){
+      console.log("Error in login controller:", error);
+      return res.status(500).json("Error in login controller:");
+    }
+  }
+
 }

@@ -1,4 +1,4 @@
-import UserModel, { IUser } from "../models/User.model";
+import UserModel, { IUser } from "../dbModels/User.model";
 import { generateToken } from "../auth/Authentication";
 
 interface signupData{

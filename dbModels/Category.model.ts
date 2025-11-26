@@ -7,8 +7,14 @@ export interface ICategory extends Document{
 }
 
 const categorySchema= new Schema<ICategory> ({
-  name:String,
-  description:String
+  name:{
+    type:String,
+    // enum:["gents","womens","kids"],
+    required:true
+  },
+  description:{
+    type:String
+  }
 })
 
 

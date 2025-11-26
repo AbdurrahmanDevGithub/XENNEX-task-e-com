@@ -81,7 +81,7 @@ export const updateCategoryById=async(id:string,{name,description}: ICategory)=>
     );
 
     if(!updated){
-      return {error:"no categories found in this id",statuscode:404}
+      return {error:"not updated",statuscode:404}
     }
 
     return {updated,statuscode:200}

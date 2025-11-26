@@ -1,5 +1,5 @@
 import { Request,Response } from "express";
-import { addProduct, viewAllProduct, viewProductsById } from "../services/Product.services";
+import { addProduct, updateProductsById, viewAllProduct, viewProductsById } from "../services/Product.services";
 
 
 //ADD PRODUCT
@@ -46,4 +46,20 @@ export class productController{
           console.log(error,"error comes from viewProductById controller");
         }
   }
+
+    //UPDATE PRODUCT BY ID
+    static async updateProductById(req:Request, res:Response){
+      try{
+        const {id} = req.params
+        const {name,price,stock,cat_name} = req.body
+        const result= await updateProductsById(id,{name,price,stock,cat_name})
+        if("error" in result){
+          return res.status(result.statuscode) .json({error:result.error})
+        }
+        return res.status(result.statuscode) .json({updated:result.updated})
+      }catch(error){
+        console.log(error,"error comes from updateProductById controller");
+      }
+    }
+
 }

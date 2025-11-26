@@ -8,4 +8,6 @@ router.post("/",productController.addProduct)
 router.get("/",productController.viewAllProducts)
 
 router.get("/:id",productController.viewProductById)
+
+router.put("/:id",productController.updateProductById)
 export default router;

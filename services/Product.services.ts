@@ -81,4 +81,35 @@ export const viewProductsById=async(id:string)=>{
     console.log(error,"error comes from viewProductsById services");
     return {error,statuscode:500}
   }
+
+}
+
+//UPDATE PRODUCTS BY ID
+export const updateProductsById=async(id:string,{name,price,stock,cat_name}:IProducts)=>{
+  try{
+     if(!id){
+      return {error:"Category Id needed",statuscode:409};
+    }
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return { error: "Invalid ID format", statuscode: 400 };
+    }
+    const cat_id=await CategoryModel.findOne({name:cat_name})
+    if(!cat_id){
+      return {error:"invalid category name",statuscode:404}
+    }
+
+    const updated=await ProductModel.findByIdAndUpdate(
+      id,
+      {name,price,stock,categoryId:cat_id},
+      {new:true}
+    )
+    if(!updated){
+      return {error:"not updated, error in ProductModel.findByIdAndUpdate",statuscode:404}
+    }
+
+    return {updated,statuscode:200}
+  }catch(error){
+    console.log(error,"error comes from updateProductsById services");
+    return {error:"error comes from updateProductsById services",statuscode:500}
+  }
 }

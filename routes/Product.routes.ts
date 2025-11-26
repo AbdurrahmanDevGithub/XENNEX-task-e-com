@@ -16,7 +16,7 @@ router.delete("/:id",verifyToken,productController.deleteProductById)
 
 router.get("/serchbyname/:name",verifyToken,productController.serchProductsByName)
 
-router.get("/filterbycategry/:name",verifyToken,productController.filterProductsByCategory)
+router.get("/filterbycategory/:name",verifyToken,productController.filterProductsByCategory)
 
 
 export default router;

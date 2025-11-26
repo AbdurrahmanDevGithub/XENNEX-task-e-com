@@ -4,6 +4,7 @@ Features
 -CRUD operations for Products and Categories
 -JWT-based authentication and authorization
 -Search products by name
+-Filter products by Categories
 -Input validation and error handling
 -Fully typed using TypeScript
 

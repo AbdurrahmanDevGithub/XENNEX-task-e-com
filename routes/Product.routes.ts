@@ -1,21 +1,22 @@
 import express from "express"
 import { productController } from "../controllers/Product.controller";
 const router=express.Router()
+import { verifyToken } from "../auth/Authentication";
 
 
-router.post("/",productController.addProduct)
+router.post("/",verifyToken,productController.addProduct)
 
-router.get("/",productController.viewAllProducts)
+router.get("/",verifyToken,productController.viewAllProducts)
 
-router.get("/:id",productController.viewProductById)
+router.get("/:id",verifyToken,productController.viewProductById)
 
-router.put("/:id",productController.updateProductById)
+router.put("/:id",verifyToken,productController.updateProductById)
 
-router.delete("/:id",productController.deleteProductById)
+router.delete("/:id",verifyToken,productController.deleteProductById)
 
-router.get("/serchbyname/:name",productController.serchProductsByName)
+router.get("/serchbyname/:name",verifyToken,productController.serchProductsByName)
 
-router.get("/filterbycategry/:name",productController.filterProductsByCategory)
+router.get("/filterbycategry/:name",verifyToken,productController.filterProductsByCategory)
 
 
 export default router;

@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 import CategoryModel from "../dbModels/Category.model"
-import productModel from "../dbModels/product.model"
+import ProductModel from "../dbModels/product.model"
 
 
 interface IProducts{
@@ -31,7 +31,7 @@ export const addProduct=async({name,price,stock,cat_name}:IProducts)=>{
     }
     const id=category._id
 
-    const product=new productModel({
+    const product=new ProductModel({
       name,
       price,
       stock,
@@ -43,5 +43,20 @@ export const addProduct=async({name,price,stock,cat_name}:IProducts)=>{
   }catch(error){
     console.log(error,"error in addProduct services");
     return ({error,statuscode:500})
+  }
+}
+
+
+//VIEW ALL PRODUCT
+export const viewAllProduct=async()=>{
+  try{
+    const products=await ProductModel.find({})
+    if(products.length===0){
+      return {error:"no products found",statuscode:404}
+    }
+    return {message:"success",products,statuscode:200}
+  }catch(error){
+    console.log(error,"error in view all products services");
+    return {error:"error in view all products services",statuscode:500}
   }
 }

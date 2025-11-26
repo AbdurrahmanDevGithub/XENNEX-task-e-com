@@ -76,6 +76,5 @@ static async deleteCategoryById(req:Request, res:Response){
   }
 }
 
-
 }
 

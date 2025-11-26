@@ -60,3 +60,25 @@ export const viewAllProduct=async()=>{
     return {error:"error in view all products services",statuscode:500}
   }
 }
+
+  //VIEW PRODUCTS BY ID
+export const viewProductsById=async(id:string)=>{
+  try{
+    if(!id){
+      return {error:"Id not found",statuscode:409}
+    }
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return { error: "Invalid ID format", statuscode: 400 };
+    }
+
+    const product =await ProductModel.findById(id)
+    if(!product){
+      return ({error:"no products found on this id",statuscode:404})
+    }
+
+    return {product,statuscode:200};
+  }catch(error){
+    console.log(error,"error comes from viewProductsById services");
+    return {error,statuscode:500}
+  }
+}

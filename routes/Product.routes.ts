@@ -7,4 +7,5 @@ router.post("/",productController.addProduct)
 
 router.get("/",productController.viewAllProducts)
 
+router.get("/:id",productController.viewProductById)
 export default router;

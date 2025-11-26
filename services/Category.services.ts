@@ -44,7 +44,7 @@ export const viewAllCategory=async()=>{
 
 
 //VIEW CATEGORY BY ID
-export const viewCatageoryById=async(id:any)=>{
+export const viewCatageoryById=async(id:string)=>{
   try{
     if(!id){
       return {error:"Id not found",statuscode:409}
@@ -67,7 +67,7 @@ export const viewCatageoryById=async(id:any)=>{
 
 
 //UPDATE CATEGORY BY ID
-export const updateCategoryById=async(id:any,{name,description}: ICategory)=>{
+export const updateCategoryById=async(id:string,{name,description}: ICategory)=>{
   try{
     if(!id){
       return {error:"Category Id needed",statuscode:409};
@@ -94,7 +94,7 @@ export const updateCategoryById=async(id:any,{name,description}: ICategory)=>{
 
 
 //DELETE BY ID
-export const deleteCategoryById=async(id:any)=>{
+export const deleteCategoryById=async(id:string)=>{
   try{
     if(!id){
       return {error:"id not found",statuscode:409}

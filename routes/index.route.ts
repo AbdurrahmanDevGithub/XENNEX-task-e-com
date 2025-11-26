@@ -15,6 +15,7 @@ const routes=[
     route:categoryRoutes
   },
   {
+    
     path:"/products",
     route:productRouter
   }

@@ -113,3 +113,63 @@ export const updateProductsById=async(id:string,{name,price,stock,cat_name}:IPro
     return {error:"error comes from updateProductsById services",statuscode:500}
   }
 }
+
+
+
+
+//DELETE BY ID
+export const deleteProductsById=async(id:string)=>{
+  try{
+    if(!id){
+      return {error:"id not found",statuscode:409}
+    }
+    if(!mongoose.Types.ObjectId.isValid(id)){
+      return { error: "Invalid ID format", statuscode: 400 };
+    }
+    const delteProduct=await ProductModel.findByIdAndDelete(id)
+    if(!delteProduct){
+      return {error:"no product found in this id",statuscode:404}
+    }
+    return {message:"Deleted successfully",delteProduct,statuscode:200}
+  }catch(error){
+    console.log(error,"error comes from deleteProductsById services");
+    return {error:"error comes from deleteProductsById services",statuscode:500}
+  }
+}
+
+
+
+//SERACH PRODUCTS BY NAME
+export const serchProductsByName=async(name:string)=>{
+  try{
+    if(!name){
+      return {error:"you should send the name",statuscode:409}
+    }
+    const product=await ProductModel.findOne({name})
+    if(!product){
+      return {error:"product not found",statuscode:404}
+    }
+    return {product,statuscode:200}
+  }catch(error){
+    console.log(error,"error in serchProductsByName services");
+    return {error:"error in serchProductsByName services",statuscode:500}
+  }
+}
+
+
+//FILTER PRODUCTS BY CATEGORY
+export const filterProductsByCategory=async(name:string)=>{
+  try{
+    if(!name){
+      return {error:"Category name not found",statuscode:409}
+    }
+    const products=await CategoryModel.find({name})
+    if(!products){
+      return {error:"products not found in this category",statuscode:404}
+    }
+    return {products,statuscode:200}
+  }catch(error){
+    console.log(error,"error in filterProductsByCategory services");
+    return {error:"error in filterProductsByCategory services",statuscode:500}
+  }
+}

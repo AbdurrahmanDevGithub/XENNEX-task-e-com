@@ -1,5 +1,5 @@
 import { Request,Response } from "express";
-import { addProduct, updateProductsById, viewAllProduct, viewProductsById } from "../services/Product.services";
+import { addProduct, deleteProductsById, filterProductsByCategory, serchProductsByName, updateProductsById, viewAllProduct, viewProductsById } from "../services/Product.services";
 
 
 //ADD PRODUCT
@@ -62,4 +62,47 @@ export class productController{
       }
     }
 
+
+    //DELETE BY ID
+    static async deleteProductById(req:Request, res:Response){
+      try{
+        const {id} = req.params
+        const result=await deleteProductsById(id);
+        if("error" in result){
+          return res.status(result.statuscode) .json({error:result.error})
+        }
+        return res.status(result.statuscode) .json({message:result.message,deletedDeteils:result.delteProduct})
+      }catch(error){
+        console.log(error,"Error in deleteProductById controller");
+      }
+    }
+
+
+    //SERACH PRODUCTS BY NAME
+    static async serchProductsByName(req:Request, res:Response){
+      try{
+        const {name} = req.params
+        const product=await serchProductsByName(name)
+        if("error" in product){
+          return res.status(product.statuscode) .json(product.error)
+        }
+        return res.status(product.statuscode) .json(product.product)
+      }catch(error){
+        console.log(error,"error in serchProductsByName controller");
+      }
+    }
+
+    //FILTER PRODUCTS BY CATEGORY
+    static async filterProductsByCategory(req:Request, res:Response){
+      try{
+        const {name} = req.params
+        const products=await filterProductsByCategory(name)
+        if("error" in products){
+          return res.status(products.statuscode) .json(products.error)
+        }
+        return res.status(products.statuscode) .json(products.products)
+      }catch(error){
+        console.log(error,"error in filterProductsByCategory controller");
+      }
+    }
 }

@@ -112,3 +112,6 @@ export const deleteCategoryById=async(id:string)=>{
     return {error:"error comes from deleteCategoryById services",statuscode:500}
   }
 }
+
+
+

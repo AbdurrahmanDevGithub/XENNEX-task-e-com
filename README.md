@@ -6,7 +6,7 @@ Features
 -Search products by name
 -Filter products by Categories
 -Input validation and error handling
--Fully typed using TypeScript
+-Fully typed using TypeScript 
 
 Account section api
   POST /api/account/signup

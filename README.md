@@ -8,6 +8,8 @@ Features
 -Input validation and error handling
 -Fully typed using TypeScript 
 
+Also it includes the Swagger API Documantation and the url is: http://localhost:3001/api-docs
+
 Account section api
   POST /api/account/signup
   GET /api/account/login 
@@ -28,31 +30,6 @@ product section Api
   GET /api/products/searchbyname/:name   --Serch product by name
   GET /api/products/filterbycategory/:name   --Filter products by category
 
-
-
--Folder Structure
-
-backend/
-  │── src/
-  │ ├── config/
-  │ │ └── db.js
-  │ ├── controllers/
-  │ │ ├── product.controller.ts
-  │ │ └── category.controller.ts
-  │ ├── dbModels/
-  │ │ ├── product.model.ts
-  │ │ └── category.model.ts
-  | | └── account.model.ts
-  │ ├── routes/
-  │ │ ├── product.routes.ts
-  │ │ └── category.routes.ts
-  | |── services/
-  │ │ ├── product.services.ts
-  │ │ └── category.services.ts
-  | | └── account.services.ts
-  │ └── app.js
-  │── package.json
-  │── README.md
 
 
   

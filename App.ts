@@ -1,26 +1,22 @@
-import express from "express"
-import connectDb from "./config/DbConnection"
-import dotenv from "dotenv"
-dotenv.config()
+import express from "express";
+import dotenv from "dotenv";
+import connectDb from "./config/DbConnection";
+import router from "./routes/index.route";
+import { swaggerUiServe, swaggerUiSetup } from "./swagger/Swagger";
 
-import router from "./routes/index.route"
+dotenv.config();
+const app = express();
 
-const app=express()
+app.use(express.json());
 
-app.use(express.json())
+// Swagger docs
+app.use("/api-docs", swaggerUiServe, swaggerUiSetup);
 
+// Main API routes
+app.use("/api", router);
 
+connectDb();
 
-connectDb()
-
-
-app.use("/api",router)
-
-
-
-
-app.listen(process.env.PORT,()=>{
+app.listen(process.env.PORT, () => {
   console.log(`Server runs on port ${process.env.PORT}`);
-  
-})
-  
+});

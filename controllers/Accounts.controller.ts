@@ -12,7 +12,7 @@ export class accountController{
           return res.status(user.statuscode) .json({error:user.error})
         }
 
-        return res.status(user.statuscode) .json(user)
+        return res.status(user.statuscode) .json({message:user.message,user})
     } catch (error) {
         console.log("Error in signup controller:", error);
         return res.status(500).json("Error in signup controller:");

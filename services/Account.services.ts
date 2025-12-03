@@ -39,7 +39,7 @@ export const accountSignup=async({username,email,password}: signupData)=>{
     })
     await user.save();
     
-    return {user,statuscode:200}
+    return {user,statuscode:200,message:"Account created successfully"}
 
   }catch(error: any){
     console.log(error)

@@ -8,7 +8,7 @@ Features
 -Input validation and error handling
 -Fully typed using TypeScript 
 
-Also it includes the Swagger API Documantation and the url is: http://localhost:3001/api-docs
+Also it includes the Swagger API Documantation and the url for that: http://localhost:3001/api-docs
 
 Account section api
   POST /api/account/signup
